@@ -19,9 +19,9 @@ error_reporting(0);
               <!-- inbox dropdown start-->
                 <?php
         $did=$_SESSION['pgasoid'];       
-$ret1=mysqli_query($con,"select tblfoodrequests.id,fullName,requestNumber from tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$did' and (tblfoodrequests.status is null || tblfoodrequests.status='')");
+        $ret1=mysqli_query($con,"select tblfoodrequests.id,fullName,requestNumber from tblfoodrequests
+        join tblfood  on tblfood.ID=tblfoodrequests.foodId 
+        where (tblfoodrequests.status LIKE 'Food Take Away/ Request Completed') and (tblfoodrequests.riderRemarks is null || tblfoodrequests.riderRemarks='')");
 $num=mysqli_num_rows($ret1);
 
 ?>  
@@ -79,7 +79,7 @@ $name=$row['FullName'];
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="donor-profile.php"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="rider-profile.php"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="change-password.php"><i class="fa fa-cog"></i> Change Password</a></li>
                 <li><a href="logout.php"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>

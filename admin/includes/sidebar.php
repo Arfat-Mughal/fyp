@@ -39,6 +39,12 @@
                         <span>Reg Food Donors </span>
                     </a>
                 </li>
+                <li>
+                    <a href="manage-rider-details.php">
+                        <i class="fa fa-users"></i>
+                        <span>Reg Riders </span>
+                    </a>
+                </li>
         <li>
                     <a href="all-listed-food.php">
                         <i class="icon-food"></i>

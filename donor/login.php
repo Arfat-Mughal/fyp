@@ -40,7 +40,7 @@ if(isset($_POST['login']))
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h2>Sign In Now</h2>
+	<h2>Donor Sign In</h2>
 		<form action="#" method="post" name="login">
 			
 			<input type="email" class="ggg" name="email" placeholder="E-MAIL" required="true">

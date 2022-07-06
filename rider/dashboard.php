@@ -44,63 +44,6 @@ if (strlen($_SESSION['pgasoid']==0)) {
 <section id="main-content">
 	<section class="wrapper">
 		<!-- //market-->
-		<div class="market-updates">
-			<div class="col-md-4 market-update-gd">
-				<div class="market-update-block clr-block-3">
-					<div class="col-md-4 market-update-right">
-						<i class="icon-food fa-3x"> </i>
-					</div>
-					
-					<?php 
-$donarid=$_SESSION['pgasoid'];
-					$query=mysqli_query($con,"Select * from  tblfood where DonorID='$donarid'");
-$fcounts=mysqli_num_rows($query);
-?>
-					 <div class="col-md-8 market-update-left">
-					 <a href="manage-food-details.php"><h4>Total Listed Food</h4></a>
-					<h3><?php echo $fcounts;?></h3>
-					
-				  </div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>
-			<?php 
-					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid' and (tblfoodrequests.status='Food Take Away/ Request Completed')");
-$completed=mysqli_num_rows($query);
-?>
-			<div class="col-md-4 market-update-gd">
-				<div class="market-update-block clr-block-1">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-file fa-3x" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-					<a href="completed-requests.php" style="color:#fff;"><h5>Food Take Away/ Request Completed </h5></a>
-						<h3><?php echo $completed;?></h3>
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>
-		
-			<?php 
-					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid' and (tblfoodrequests.status='Request Rejected')");
-$rejected=mysqli_num_rows($query);
-?>
-			<div class="col-md-4 market-update-left">
-				<div class="market-update-block clr-block-2">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-file fa-3x" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-					<a href="rejected-requests.php"><h4>Rejected Requests </h4></a>
-						<h3><?php echo $rejected;?></h3>
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>	
 
 			<?php 
 					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
@@ -124,7 +67,7 @@ $allrequests=mysqli_num_rows($query);
 			<?php 
 					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
  join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid' and (tblfoodrequests.status is null || tblfoodrequests.status='')");
+ where (tblfoodrequests.status Like 'Food Take Away/ Request Completed')");
 $newrequest=mysqli_num_rows($query);
 ?>
 			<div class="col-md-4 market-update-gd" style="margin-top:1%;">

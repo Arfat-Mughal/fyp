@@ -15,7 +15,7 @@ if (strlen($_SESSION['pgasoid']==0)) {
     if ($query) {
     $msg="Owner profile has been updated.";
     echo "<script>alert('Profile details updated successfully');</script>";
-    echo "<script type='text/javascript'> document.location = 'donor-profile.php'; </script>";
+    echo "<script type='text/javascript'> document.location = 'rider-profile.php'; </script>";
   }
   else
     {
@@ -26,7 +26,7 @@ if (strlen($_SESSION['pgasoid']==0)) {
 
 <!DOCTYPE html>
 <head>
-<title>Food Waste Management System|| Donor Profile  </title>
+<title>Food Waste Management System|| Rider Profile  </title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->

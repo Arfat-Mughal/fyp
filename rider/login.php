@@ -20,7 +20,7 @@ if(isset($_POST['login']))
 ?>
 <!DOCTYPE html>
 <head>
-    <title>Food Waste Management System | Donor Login </title>
+    <title>Food Waste Management System | Rider Login </title>
 
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- bootstrap-css -->
@@ -40,7 +40,7 @@ if(isset($_POST['login']))
 <body>
 <div class="log-w3">
     <div class="w3layouts-main">
-        <h2>Sign In Now</h2>
+        <h2>Rider Sign In</h2>
         <form action="#" method="post" name="login">
 
             <input type="email" class="ggg" name="email" placeholder="E-MAIL" required="true">

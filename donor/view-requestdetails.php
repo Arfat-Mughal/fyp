@@ -73,7 +73,7 @@ if (strlen($_SESSION['pgasoid']==0)) {
         
 $fid=$_GET['frid'];   
   $donarid=$_SESSION['pgasoid'];
-$ret=mysqli_query($con,"select tblfoodrequests.requestNumber,tblfoodrequests.requestDate,tblfoodrequests.mobileNumber,tblfoodrequests.message,tblfoodrequests.status,tblfoodrequests.donorRemark,tblfoodrequests.requestCompletionDate,tblfoodrequests.fullName,
+$ret=mysqli_query($con,"select tblfoodrequests.requestNumber,tblfoodrequests.requestDate,tblfoodrequests.mobileNumber,tblfoodrequests.message,tblfoodrequests.status,tblfoodrequests.riderRemarks,tblfoodrequests.donorRemark,tblfoodrequests.requestCompletionDate,tblfoodrequests.fullName,
 tblfood.ID,tblfood.foodId,tblfood.ContactPerson,tblfood.CPMobNumber,tblfood.CreationDate,tblfood.FoodItems,tblfood.StateName,tblfood.CityName,tblfood.Description,tblfood.PickupDate,tblfood.PickupAddress,tblfood.Image,tblfood.UpdationDate,tbldonor.FullName,tbldonor.MobileNumber,tbldonor.Email from 
 tblfoodrequests
 join tblfood  on tblfood.ID=tblfoodrequests.foodId
@@ -164,6 +164,19 @@ echo $row['status'];}
 <th>Remark Date</th>
 <td><?php echo $row['requestCompletionDate']; ?></td>
 </tr>
+
+<?php if (isset($row['riderRemarks'])) { ?>
+<tr>
+  <th colspan="4" style="text-align:center;color:red;font-size:20px;">Rider Comment</th>
+</tr>
+<tr>
+<th>Rider Remark</th>
+<td><?php echo $row['riderRemarks']; ?></td>
+<th>Remark Date</th>
+<td><?php echo $row['requestCompletionDate']; ?></td>
+</tr>
+<?php } ?>
+
 <?php endif; ?>
 
 </tr>
