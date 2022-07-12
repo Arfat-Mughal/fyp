@@ -3,34 +3,43 @@ session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 
-if(isset($_POST['login']))
-{
-    $email=$_POST['email'];
-    $password=md5($_POST['password']);
-    $query=mysqli_query($con,"select ID from tblrider where  Email='$email' && Password='$password' ");
-    $ret=mysqli_fetch_array($query);
-    if($ret>0){
-        $_SESSION['pgasoid']=$ret['ID'];
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    $longitude = (float)($_POST['longitude']);
+    $latitude = (float)($_POST['latitude']);
+    $query = mysqli_query($con, "select ID from tblrider where Email='$email' && Password='$password'");
+    $ret = mysqli_fetch_array($query);
+    if ($ret > 0) {
+        $ID = $ret['ID'];
+        $query = mysqli_query($con, "UPDATE `tblrider` SET `latitude`='$latitude',`longitude`='$longitude' WHERE ID = '$ID'");
+        $_SESSION['pgasoid'] = $ret['ID'];
         header('location:dashboard.php');
-    }
-    else{
+    } else {
         echo "<script>alert('Invalid Details.');</script>";
     }
 }
 ?>
 <!DOCTYPE html>
 <head>
-    <title>Food Waste Management System | Rider Login </title>
+    <title>Food Waste Management System | Donor Login </title>
 
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
     <!-- bootstrap-css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- //bootstrap-css -->
     <!-- Custom CSS -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
+    <link href="css/style.css" rel='stylesheet' type='text/css'/>
     <link href="css/style-responsive.css" rel="stylesheet"/>
     <!-- font CSS -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
     <!-- font-awesome icons -->
     <link rel="stylesheet" href="css/font.css" type="text/css"/>
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -41,14 +50,20 @@ if(isset($_POST['login']))
 <div class="log-w3">
     <div class="w3layouts-main">
         <h2>Rider Sign In</h2>
-        <form action="#" method="post" name="login">
+        <form action="#" method="post" name="login" id="get-location">
 
             <input type="email" class="ggg" name="email" placeholder="E-MAIL" required="true">
             <input type="password" class="ggg" name="password" placeholder="PASSWORD" required="true">
+            <input type="number" class="ggg" name="latitude" placeholder="latitude" id="latitude">
+            <input type="number" class="ggg" name="longitude" placeholder="longitude" id="longitude">
 
             <a href="forgot-password.php">Forgot Password?</a>
             <div class="clearfix"></div>
+            <!--            <div class="text-center">-->
+            <!--                <button type="button" class="btn btn-primary" id="get-location" name="get-location"> Get My Location</button>-->
+            <!--            </div>-->
             <input type="submit" value="Sign In" name="login">
+
         </form>
         <p>Don't Have an Account ?<a href="rider-registration.php">Create an account</a></p>
         <p class="mb-1">
@@ -57,12 +72,29 @@ if(isset($_POST['login']))
         </p>
     </div>
 </div>
+
+<script>
+    let button = document.getElementById("get-location");
+    let latText = document.getElementById("latitude");
+    let longText = document.getElementById("longitude");
+
+    button.addEventListener("click", function() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+
+            document.getElementById("latitude").setAttribute('value',lat);
+            document.getElementById("longitude").setAttribute('value',long);
+        });
+    });
+</script>
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="js/scripts.js"></script>
 <script src="js/jquery.slimscroll.js"></script>
 <script src="js/jquery.nicescroll.js"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+<!--[if lte IE 8]>
+<script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
 </body>
 </html>

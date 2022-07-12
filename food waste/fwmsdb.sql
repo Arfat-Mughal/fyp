@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2022 at 04:18 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.23
+-- Generation Time: Jul 12, 2022 at 01:31 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -118,19 +118,10 @@ CREATE TABLE `tbldonor` (
   `Email` varchar(200) DEFAULT NULL,
   `MobileNumber` bigint(10) DEFAULT NULL,
   `Password` varchar(120) DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbldonor`
---
-
-INSERT INTO `tbldonor` (`ID`, `FullName`, `Email`, `MobileNumber`, `Password`, `RegDate`) VALUES
-(1, 'Rahul Singh', 'guru@gmail.com', 9898989898, '202cb962ac59075b964b07152d234b70', '2021-11-29 05:12:21'),
-(2, 'Khusbu', 'hj@gmail.com', 8989898988, '202cb962ac59075b964b07152d234b70', '2021-11-29 05:12:21'),
-(3, 'John Doe', 'johndoe@gmail.com', 1234567890, 'f925916e2754e5e03f75dd58a5733251', '2021-11-29 05:12:21'),
-(4, 'Anuj Kumar', 'anuj@gmail.com', 4877799797, '202cb962ac59075b964b07152d234b70', '2021-11-29 05:12:21'),
-(5, 'Rahul kumar Singh', 'rahul@gmail.com', 1236547899, 'f925916e2754e5e03f75dd58a5733251', '2022-01-23 06:25:11');
 
 -- --------------------------------------------------------
 
@@ -152,17 +143,10 @@ CREATE TABLE `tblfood` (
   `CPMobNumber` bigint(10) DEFAULT NULL,
   `Image` varchar(200) DEFAULT NULL,
   `CreationDate` timestamp NULL DEFAULT current_timestamp(),
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `distribution_center` varchar(255) DEFAULT NULL,
+  `riderRemarks` mediumtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblfood`
---
-
-INSERT INTO `tblfood` (`ID`, `DonorID`, `foodId`, `FoodItems`, `StateName`, `CityName`, `Description`, `PickupDate`, `PickupAddress`, `ContactPerson`, `CPMobNumber`, `Image`, `CreationDate`, `UpdationDate`) VALUES
-(2, 4, 330170905, 'Dal,Rice,Roti,Panner', 'Utter Pradesh', 'Allahabad', 'Good Quality Food', '2022-01-23', 'H 23423 Sector 10', 'John', 1478523699, '008f6072e5da05cd7c7bd61a8fd72925.jpg', '2022-01-22 09:24:51', '2022-01-22 09:45:47'),
-(3, 3, 372165116, 'Dal Maknhi,Bread,Rice', 'Andra Pradesh', 'Visakhapatnam', 'Nice Quality Food', '2022-01-23', 'J 466 ABC Street', 'Rahul Singh', 9874563210, 'd35fc3840fe988a4d42f5371b1071f8c.jpg', '2022-01-22 10:20:35', NULL),
-(4, 5, 244559044, 'Dal,Rice,Mix Veg,Panner', 'Uttar Pradesh', 'Aligarh', 'Nice Quality Food', '2022-01-24', 'A 347583 XYZ Street', 'Amit Kumar', 9852364710, 'd617a5da2739292d34bf867d219b945b.jpg', '2022-01-23 06:26:22', '2022-01-23 06:26:47');
 
 -- --------------------------------------------------------
 
@@ -180,17 +164,9 @@ CREATE TABLE `tblfoodrequests` (
   `requestDate` timestamp NULL DEFAULT current_timestamp(),
   `status` varchar(120) DEFAULT NULL,
   `donorRemark` mediumtext DEFAULT NULL,
+  `riderRemarks` mediumtext DEFAULT NULL,
   `requestCompletionDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblfoodrequests`
---
-
-INSERT INTO `tblfoodrequests` (`id`, `requestNumber`, `foodId`, `fullName`, `mobileNumber`, `message`, `requestDate`, `status`, `donorRemark`, `requestCompletionDate`) VALUES
-(1, 223505689, 2, 'Sanjeev', 8521479630, 'NA', '2022-01-22 10:44:28', NULL, NULL, NULL),
-(2, 692624619, 3, 'Amit Kumar', 1122334455, 'Need the food for poor peoples', '2022-01-22 10:46:41', 'Food Take Away/ Request Completed', 'Food Picked up.', '2022-01-22 11:29:47'),
-(3, 293916769, 4, 'Garima Singh', 7891232014, 'I need this for poor people', '2022-01-23 06:30:23', 'Food Take Away/ Request Completed', 'You can pickup the food', '2022-01-23 06:30:54');
 
 -- --------------------------------------------------------
 
@@ -212,7 +188,7 @@ CREATE TABLE `tblpages` (
 
 INSERT INTO `tblpages` (`ID`, `PageType`, `PageTitle`, `PageDescription`, `UpdationDate`) VALUES
 (1, 'aboutus', 'About Us', '                                <div style=\"text-align: center;\"><b><font size=\"6\">Welcome to Food Waste Management System</font></b></div><div style=\"text-align: left;\"><br></div><div style=\"text-align: left;\"><p class=\"bodytext\" style=\"margin-bottom: 10px; color: rgb(33, 37, 41); line-height: 1.5; font-family: \" open=\"\" sans\",=\"\" sans-serif;=\"\" font-size:=\"\" 14px;\"=\"\"><span style=\"font-weight: 700;\">Food waste&nbsp;</span>refers to the decrease in the quantity or quality of food resulting from decisions and actions by retailers, food service providers and consumers. &nbsp;Food is wasted in many ways:</p><ul style=\"margin-bottom: 10px; padding-left: 1.5em; color: rgb(33, 37, 41); font-family: \" open=\"\" sans\",=\"\" sans-serif;=\"\" font-size:=\"\" 14px;\"=\"\"><li style=\"margin-bottom: 6px; position: relative; padding-right: 15px; line-height: 1.5;\">Fresh produce that deviates from what is considered optimal, for example in terms of shape, size and color, is often removed from the supply chain during sorting operations.</li><li style=\"margin-bottom: 6px; position: relative; padding-right: 15px; line-height: 1.5;\">Foods that are close to, at or beyond the â€œbest-beforeâ€ date are often discarded by retailers and consumers.</li><li style=\"margin-bottom: 6px; position: relative; padding-right: 15px; line-height: 1.5;\">Large quantities of wholesome edible food are often unused or left over and discarded from household kitchens and eating establishments.</li></ul><p class=\"bodytext\" style=\"margin-bottom: 10px; color: rgb(33, 37, 41); line-height: 1.5; font-family: \" open=\"\" sans\",=\"\" sans-serif;=\"\" font-size:=\"\" 14px;\"=\"\">Less food loss and waste would lead to more efficient land use and better water resource management with positive impacts on climate change and livelihoods.</p></div>', '2021-12-09 11:36:01'),
-(2, 'contactus', 'Contact Us', '<b>Food Waste Management System</b><div><b>Contact Number:</b>+91-96784532145</div><div><b>email: </b>info@gmail.com</div><div><b>Address : </b>XYZ street ABC</div>', '2022-01-23 06:34:52');
+(2, 'contactus', 'Contact Us', '<b>Food Waste Management System</b><div><b>Contact Number:</b>+92-313-2555-703</div><div><b>email: </b>arfat.bjs@gmail.com</div><div><b>Address : </b>Lahore, Pakistan</div>', '2022-07-06 16:21:09');
 
 -- --------------------------------------------------------
 
@@ -226,15 +202,10 @@ CREATE TABLE `tblrider` (
   `Email` varchar(200) DEFAULT NULL,
   `MobileNumber` bigint(10) DEFAULT NULL,
   `Password` varchar(120) DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tblrider`
---
-
-INSERT INTO `tblrider` (`ID`, `FullName`, `Email`, `MobileNumber`, `Password`, `RegDate`) VALUES
-(1, 'Arfat Mughal', 'arfat.bjs@gmail.com', 3132555703, '5f4dcc3b5aa765d61d8327deb882cf99', '2022-07-06 14:01:06');
 
 -- --------------------------------------------------------
 
@@ -348,19 +319,19 @@ ALTER TABLE `tblcontact`
 -- AUTO_INCREMENT for table `tbldonor`
 --
 ALTER TABLE `tbldonor`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblfood`
 --
 ALTER TABLE `tblfood`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblfoodrequests`
 --
 ALTER TABLE `tblfoodrequests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblpages`
@@ -372,7 +343,7 @@ ALTER TABLE `tblpages`
 -- AUTO_INCREMENT for table `tblrider`
 --
 ALTER TABLE `tblrider`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblstate`

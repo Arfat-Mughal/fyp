@@ -6,7 +6,7 @@
                 <ul class="nav1">
                     <li><a href="index.php">HOME</a></li>
                     <li><a class="active" href="about.php">ABOUT</a></li>
-                    <li><a href="food-available.php"> AVAILABLE FOOD LIST</a></li>
+<!--                    <li><a href="food-available.php"> AVAILABLE FOOD LIST</a></li>-->
                     
                     <li><a href="contact.php">CONTACT</a></li>
                     <li><a href="donor/login.php">DONOR</a></li>

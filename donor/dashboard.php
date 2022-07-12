@@ -70,75 +70,75 @@ $fcounts=mysqli_num_rows($query);
  where tblfood.DonorID='$donarid' and (tblfoodrequests.status='Food Take Away/ Request Completed')");
 $completed=mysqli_num_rows($query);
 ?>
-			<div class="col-md-4 market-update-gd">
-				<div class="market-update-block clr-block-1">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-file fa-3x" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-					<a href="completed-requests.php" style="color:#fff;"><h5>Food Take Away/ Request Completed </h5></a>
-						<h3><?php echo $completed;?></h3>
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>
-		
-			<?php 
-					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid' and (tblfoodrequests.status='Request Rejected')");
-$rejected=mysqli_num_rows($query);
-?>
-			<div class="col-md-4 market-update-left">
-				<div class="market-update-block clr-block-2">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-file fa-3x" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-					<a href="rejected-requests.php"><h4>Rejected Requests </h4></a>
-						<h3><?php echo $rejected;?></h3>
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>	
+<!--			<div class="col-md-4 market-update-gd">-->
+<!--				<div class="market-update-block clr-block-1">-->
+<!--					<div class="col-md-4 market-update-right">-->
+<!--						<i class="fa fa-file fa-3x" ></i>-->
+<!--					</div>-->
+<!--					<div class="col-md-8 market-update-left">-->
+<!--					<a href="completed-requests.php" style="color:#fff;"><h5>Food Take Away/ Request Completed </h5></a>-->
+<!--						<h3>--><?php //echo $completed;?><!--</h3>-->
+<!--					</div>-->
+<!--				  <div class="clearfix"> </div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		-->
+<!--			--><?php //
+//					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
+// join tblfood  on tblfood.ID=tblfoodrequests.foodId
+// where tblfood.DonorID='$donarid' and (tblfoodrequests.status='Request Rejected')");
+//$rejected=mysqli_num_rows($query);
+//?>
+<!--			<div class="col-md-4 market-update-left">-->
+<!--				<div class="market-update-block clr-block-2">-->
+<!--					<div class="col-md-4 market-update-right">-->
+<!--						<i class="fa fa-file fa-3x" ></i>-->
+<!--					</div>-->
+<!--					<div class="col-md-8 market-update-left">-->
+<!--					<a href="rejected-requests.php"><h4>Rejected Requests </h4></a>-->
+<!--						<h3>--><?php //echo $rejected;?><!--</h3>-->
+<!--					</div>-->
+<!--				  <div class="clearfix"> </div>-->
+<!--				</div>-->
+<!--			</div>	-->
+<!---->
+<!--			--><?php //
+//					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
+// join tblfood  on tblfood.ID=tblfoodrequests.foodId
+// where tblfood.DonorID='$donarid' ");
+//$allrequests=mysqli_num_rows($query);
+//?>
+<!--			<div class="col-md-4 market-update-gd" style="margin-top:1%;">-->
+<!--				<div class="market-update-block clr-block-4">-->
+<!--					<div class="col-md-4 market-update-right">-->
+<!--						<i class="fa fa-file fa-3x" ></i>-->
+<!--					</div>-->
+<!--					<div class="col-md-8 market-update-left">-->
+<!--					<a href="all-requests.php"><h4>All Requests </h4></a>-->
+<!--						<h3>--><?php //echo $allrequests;?><!--</h3>-->
+<!--					</div>-->
+<!--				  <div class="clearfix"> </div>-->
+<!--				</div>-->
+<!--			</div>	-->
 
-			<?php 
-					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid' ");
-$allrequests=mysqli_num_rows($query);
-?>
-			<div class="col-md-4 market-update-gd" style="margin-top:1%;">
-				<div class="market-update-block clr-block-4">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-file fa-3x" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-					<a href="all-requests.php"><h4>All Requests </h4></a>
-						<h3><?php echo $allrequests;?></h3>
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>	
-
-			<?php 
-					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid' and (tblfoodrequests.status is null || tblfoodrequests.status='')");
-$newrequest=mysqli_num_rows($query);
-?>
-			<div class="col-md-4 market-update-gd" style="margin-top:1%;">
-				<div class="market-update-block clr-block-5">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-file fa-3x" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-					<a href="new-requests.php"><h4>New Requests </h4></a>
-						<h3><?php echo $newrequest;?></h3>
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>	
+<!--			--><?php
+//					$query=mysqli_query($con,"select tblfoodrequests.id from tblfoodrequests
+// join tblfood  on tblfood.ID=tblfoodrequests.foodId
+// where tblfood.DonorID='$donarid' and (tblfoodrequests.status is null || tblfoodrequests.status='')");
+//$newrequest=mysqli_num_rows($query);
+//?>
+<!--			<div class="col-md-4 market-update-gd" style="margin-top:1%;">-->
+<!--				<div class="market-update-block clr-block-5">-->
+<!--					<div class="col-md-4 market-update-right">-->
+<!--						<i class="fa fa-file fa-3x" ></i>-->
+<!--					</div>-->
+<!--					<div class="col-md-8 market-update-left">-->
+<!--					<a href="new-requests.php"><h4>New Requests </h4></a>-->
+<!--						<h3>--><?php //echo $newrequest;?><!--</h3>-->
+<!--					</div>-->
+<!--				  <div class="clearfix"> </div>-->
+<!--				</div>-->
+<!--			</div>	-->
 
 
 

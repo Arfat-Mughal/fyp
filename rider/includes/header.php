@@ -19,9 +19,7 @@ error_reporting(0);
               <!-- inbox dropdown start-->
                 <?php
         $did=$_SESSION['pgasoid'];       
-        $ret1=mysqli_query($con,"select tblfoodrequests.id,fullName,requestNumber from tblfoodrequests
-        join tblfood  on tblfood.ID=tblfoodrequests.foodId 
-        where (tblfoodrequests.status LIKE 'Food Take Away/ Request Completed') and (tblfoodrequests.riderRemarks is null || tblfoodrequests.riderRemarks='')");
+        $ret1=mysqli_query($con,"SELECT * FROM tblfood join tbldonor  on tblfood.DonorID=tbldonor.ID where tblfood.distribution_center is null");
 $num=mysqli_num_rows($ret1);
 
 ?>  
@@ -44,7 +42,7 @@ while($result=mysqli_fetch_array($ret1))
     
                 <li>
 <span class="subject">
-<span class="from"><a class="dropdown-item" href="view-requestdetails.php?frid=<?php echo $result['id'];?>">New Request Received from <?php echo $result['fullName'];?> (<?php echo $result['requestNumber'];?>)</a></span>
+<span class="from"><a class="dropdown-item" href="view-requestdetails.php?frid=<?php echo $result['foodId'];?>">New Request Received from <?php echo $result['fullName'];?> (<?php echo $result['requestNumber'];?>)</a></span>
 </span>
                 </li>
 <?php } }  else {?>

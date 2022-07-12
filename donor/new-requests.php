@@ -5,7 +5,6 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['pgasoid']==0)) {
   header('location:logout.php');
   } else{
-
 ?>
 
 

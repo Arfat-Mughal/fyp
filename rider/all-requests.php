@@ -57,14 +57,13 @@ All Requests
         }}'>
         <thead>
           <tr>
-            <th data-breakpoints="xs">S.NO</th>
-            <th>Request Id</th>
-            <th>Request By</th>
-            <th>Requester Mobile Number</th>
-            <th>Food Item</th>
-            <th>Request Date</th>
-            <th>Status</th>
-            <th data-breakpoints="xs">Action</th>
+              <th data-breakpoints="xs">S.NO</th>
+              <th>Food Id</th>
+              <th>Donor Name</th>
+              <th>Address</th>
+              <th>Food Item</th>
+              <th data-breakpoints="xs">Details</th>
+              <th>Donor Current Location</th>
            
            
           </tr>
@@ -72,10 +71,7 @@ All Requests
         <tbody>
         <?php
         $donarid=$_SESSION['pgasoid'];
-$ret=mysqli_query($con,"select tblfoodrequests.id as frid,tblfood.ID as foodid,tblfood.FoodItems,tblfoodrequests.requestNumber,tblfoodrequests.fullName,tblfoodrequests.mobileNumber,tblfoodrequests.message,tblfoodrequests.requestDate,tblfoodrequests.status from
-tblfoodrequests
- join tblfood  on tblfood.ID=tblfoodrequests.foodId 
- where tblfood.DonorID='$donarid'");
+$ret=mysqli_query($con,"SELECT * FROM tblfood join tbldonor  on tblfood.DonorID=tbldonor.ID");
 $cnt=1;
 $count=mysqli_num_rows($ret);
 if($count>0){
@@ -84,18 +80,23 @@ while ($row=mysqli_fetch_array($ret)) {
 ?>
         
           <tr data-expanded="true">
-            <td><?php echo $cnt;?></td>
-              <td><?php  echo $row['requestNumber'];?></td>
-                  <td><?php  echo $row['fullName'];?></td>
-                  <td><?php  echo $row['mobileNumber'];?></td>
-                  <td><?php  echo $row['FoodItems'];?></td>
-                  <td><?php  echo $row['requestDate'];?></td>
-                   <?php if($row['status']==""){ ?>
-
-                     <td class="font-w600"><?php echo "Not Updated Yet"; ?></td>
-                     <?php } else { ?>
-                      <td><?php  echo $row['status'];?></td><?php } ?>
-                  <td><a href="view-requestdetails.php?frid=<?php echo $row['frid'];?>">View Details</a></td>
+              <td><?php echo $cnt; ?></td>
+              <td><?php echo $row['foodId']; ?></td>
+              <td><?php echo $row['FullName']; ?></td>
+              <td><?php echo $row['PickupAddress']; ?></td>
+              <td><?php echo $row['FoodItems']; ?></td>
+              <td><a href="view-requestdetails.php?frid=<?php echo $row['foodId']; ?>">View
+                      Details</a></td>
+              <td style="width: 450px;height=450px;">
+                  <iframe src="https://www.google.com/maps?q=<?php echo $row['latitude']; ?>,<?php echo $row['longitude']; ?>&hl=es;z=14&output=embed"
+                          style="width: 100%; height: 100%;"></iframe>
+              </td>
+<!--                   --><?php //if($row['status']==""){ ?>
+<!---->
+<!--                     <td class="font-w600">--><?php //echo "Not Updated Yet"; ?><!--</td>-->
+<!--                     --><?php //} else { ?>
+<!--                      <td>--><?php // echo $row['status'];?><!--</td>--><?php //} ?>
+<!--                  <td><a href="view-requestdetails.php?frid=--><?php //echo $row['frid'];?><!--">View Details</a></td>-->
                 </tr>
                 <?php 
 $cnt=$cnt+1;

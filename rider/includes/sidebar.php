@@ -18,7 +18,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="new-requests.php">New</a></li>
-                        <li><a href="completed-requests.php">Picked/Completed</a></li>
+<!--                        <li><a href="completed-requests.php">Picked/Completed</a></li>-->
                            <li><a href="all-requests.php">All</a></li>
                     </ul>
                 </li>

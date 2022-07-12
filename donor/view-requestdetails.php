@@ -8,7 +8,7 @@ if (strlen($_SESSION['pgasoid']==0)) {
 
     if(isset($_POST['submit']))
   {
-    
+
     $frid=$_GET['frid'];
     $status=$_POST['status'];
     $donormsg=$_POST['donaremark']; 

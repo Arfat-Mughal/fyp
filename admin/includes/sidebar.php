@@ -52,19 +52,19 @@
                     </a>
                 </li>
 
-               <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Food Requests</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="new-requests.php">New Requests</a></li>
-                        <li><a href="completed-requests.php">Picked/Take away /Completed</a></li>
-                        <li><a href="rejected-requests.php">Rejected</a></li>
-                         <li><a href="all-requests.php">All</a></li>
-                       
-                    </ul>
-                </li>
+<!--               <li class="sub-menu">-->
+<!--                    <a href="javascript:;">-->
+<!--                        <i class="fa fa-book"></i>-->
+<!--                        <span>Food Requests</span>-->
+<!--                    </a>-->
+<!--                    <ul class="sub">-->
+<!--                        <li><a href="new-requests.php">New Requests</a></li>-->
+<!--                        <li><a href="completed-requests.php">Picked/Take away /Completed</a></li>-->
+<!--                        <li><a href="rejected-requests.php">Rejected</a></li>-->
+<!--                         <li><a href="all-requests.php">All</a></li>-->
+<!--                       -->
+<!--                    </ul>-->
+<!--                </li>-->
                <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-bullhorn"></i>

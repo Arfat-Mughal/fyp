@@ -55,7 +55,7 @@ if (strlen($_SESSION['pgasaid']==0)) {
 $vid=$_GET['viewid'];   
   $donarid=$_SESSION['pgasoid'];
 $ret=mysqli_query($con,"select tblfood.foodId,
-tblfood.ID,tblfood.foodId,tblfood.ContactPerson,tblfood.CPMobNumber,tblfood.CreationDate,tblfood.FoodItems,tblfood.StateName,tblfood.CityName,tblfood.Description,tblfood.PickupDate,tblfood.PickupAddress,tblfood.Image,tblfood.UpdationDate,tbldonor.FullName,tbldonor.MobileNumber,tbldonor.Email from 
+tblfood.ID,tblfood.foodId,tblfood.ContactPerson,tblfood.CPMobNumber,tblfood.riderRemarks,tblfood.riderRemarks,tblfood.distribution_center,tblfood.CreationDate,tblfood.FoodItems,tblfood.StateName,tblfood.CityName,tblfood.Description,tblfood.PickupDate,tblfood.PickupAddress,tblfood.Image,tblfood.UpdationDate,tbldonor.FullName,tbldonor.MobileNumber,tbldonor.Email from 
 tblfood
 join tbldonor on tblfood.DonorID=tbldonor.ID
  where  tblfood.ID='$vid'");
@@ -115,6 +115,24 @@ Food Id #<?php  echo $row['foodId'];?></td></tr>
   </td>
 
  </tr>
+              <?php if ($row['riderRemarks'] != null) { ?>
+                  <tr>
+                      <th>Distribution Center</th>
+                      <td>
+                          <?php echo $row['distribution_center']; ?>
+                      </td>
+                      <th>Delivered Date:</th>
+                      <td>
+                          <?php echo $row['UpdationDate']; ?>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>Rider Remark:</th>
+                      <td>
+                          <?php echo $row['riderRemarks']; ?>
+                      </td>
+                  </tr>
+              <?php }?>
 </table>
 
 
