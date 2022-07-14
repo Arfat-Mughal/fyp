@@ -65,6 +65,16 @@
 <!--                       -->
 <!--                    </ul>-->
 <!--                </li>-->
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Deliver Food</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="store.php">Store</a></li>
+<!--                        <li><a href="delivered.php">Picked/Take away/Delivered</a></li>-->
+                    </ul>
+                </li>
                <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-bullhorn"></i>

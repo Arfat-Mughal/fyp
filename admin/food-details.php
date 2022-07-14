@@ -146,7 +146,6 @@ Food Id #<?php  echo $row['foodId'];?></td></tr>
 		 <?php include_once('includes/footer.php');?>  
   <!-- / footer -->
 </section>
-
 <!--main content end-->
 </section>
 <script src="js/bootstrap.js"></script>
